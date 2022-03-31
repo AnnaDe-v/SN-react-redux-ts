@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.item a{
+    text-decoration: none;
+    color: #3c3c3c;
+    font-weight: bolder;
+    font-size: x-large;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.item a.active{
+    color: #ed7631;
+    font-size: x-large;
+    font-family: 'Bebas Neue', cursive;
+}
