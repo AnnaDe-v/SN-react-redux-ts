@@ -4,7 +4,7 @@ import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {addMessage, dialogType, messageType, onMessageChange} from "../../redux/dialogsReducer";
+import {addMessageAC, dialogType, messageType, onMessageChangeAC} from "../../redux/dialogsReducer";
 import {redirectHOC} from "../../components/Common/RedirectHOC/RedirectHOC";
 
 const Dialogs =  redirectHOC(() => {
@@ -15,10 +15,10 @@ const Dialogs =  redirectHOC(() => {
     const dispatch = useDispatch()
 
     const onButtonClickHandler = (): void => {
-        dispatch(addMessage())
+        dispatch(addMessageAC())
     }
     const onNewMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-        dispatch(onMessageChange(e.currentTarget.value))
+        dispatch(onMessageChangeAC(e.currentTarget.value))
     }
 
     const dialogsItems = dialogs.map(d => <Dialog name={d.name} key={d.id} id={d.id}/>)

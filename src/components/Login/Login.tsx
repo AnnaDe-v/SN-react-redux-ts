@@ -3,7 +3,7 @@ import {Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import s from './Login.module.css'
 import {useDispatch} from "react-redux";
-import {makeLogin} from "../../redux/authReducer";
+import {makeLoginTC} from "../../redux/authReducer";
 
 export type loginValuesType = {
     email: string
@@ -25,7 +25,7 @@ export const Login = () => {
     const dispatch = useDispatch()
 
     const onSubmitHandler = async (values: loginValuesType, {setSubmitting}: FormikHelpers<loginValuesType>) => {
-        dispatch(makeLogin(values))
+        dispatch(makeLoginTC(values))
 
 
         // const pr = await new Promise(res => {

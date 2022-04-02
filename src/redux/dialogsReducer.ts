@@ -50,11 +50,11 @@ export const ON_MESSAGE_CHANGE = "ON-MESSAGE-CHANGE";
 
 
 export type dialogsActionTypes = AddMessageAType | OnMessageChangeActionType
-export type AddMessageAType = ReturnType<typeof addMessage>
-export type OnMessageChangeActionType = ReturnType<typeof onMessageChange>
+export type AddMessageAType = ReturnType<typeof addMessageAC>
+export type OnMessageChangeActionType = ReturnType<typeof onMessageChangeAC>
 
-export const addMessage = () => ({type: ADD_MESSAGE} as const)
-export const onMessageChange = (newValue: string) => ({type: ON_MESSAGE_CHANGE, newValue} as const)
+export const addMessageAC = () => ({type: ADD_MESSAGE} as const)
+export const onMessageChangeAC = (newValue: string) => ({type: ON_MESSAGE_CHANGE, newValue} as const)
 
 
 export default dialogsReducer

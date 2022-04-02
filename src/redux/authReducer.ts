@@ -24,35 +24,54 @@ const authReducer = (state = initState, action: authActionTypes): authStateType 
                 ...state,
                 ...action.payload,
             }
+
+        case "LOGOUT":
+            return {
+                ...state,
+                isAuth: false
+            }
         default:
             return state
 
     }
 }
 
-export type authActionTypes = setUserDataActionType
-type setUserDataActionType = ReturnType<typeof setUserData>
 
-export const setUserData = (payload: authStateType) => ({
+export type setUserDataActionType = ReturnType<typeof setUserDataAC>
+export type logOutActionType = ReturnType<typeof logOutAC>
+
+
+export const setUserDataAC = (payload: authStateType) => ({
     type: 'SET_USER_DATA',
     payload
 } as const)
+export const logOutAC = () => ({
+    type: 'LOGOUT'
+} as const)
 
-export const initUserData = (): thunkType => (dispatch) => {
+export const initUserDataTC = (): thunkType => (dispatch) => {
     authAPI.me()
         .then(data => {
             data
-            && dispatch(setUserData({...data, isAuth: true}))
+            && dispatch(setUserDataAC({...data, isAuth: true}))
         })
 }
 
-export const makeLogin = (loginData: loginValuesType): thunkType => dispatch => {
+export const makeLoginTC = (loginData: loginValuesType): thunkType => dispatch => {
     authAPI.login(loginData)
         .then(res => {
             const {failMessage, isSuccess, userId} = res
-            isSuccess && dispatch(initUserData())
+            isSuccess && dispatch(initUserDataTC())
+        })
+}
+export const logOutTC = (): thunkType => dispatch => {
+    authAPI.logOut()
+        .then(res => {
+            dispatch(logOutAC())
         })
 }
 
-
 export default authReducer
+
+
+export type authActionTypes = setUserDataActionType | logOutActionType

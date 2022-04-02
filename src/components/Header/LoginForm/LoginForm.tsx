@@ -2,14 +2,14 @@ import React, {Dispatch, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
 import {thunkType} from "../../../redux/usersReducer";
-import {authStateType, initUserData} from "../../../redux/authReducer";
+import {authStateType, initUserDataTC} from "../../../redux/authReducer";
 import {NavLink} from "react-router-dom";
 
 export const LoginForm = () => {
     const {id, login, email, isAuth} = useSelector<AppStateType, authStateType>(state => state.auth)
     const dispatch = useDispatch<Dispatch<thunkType>>()
     useEffect(() => {
-        dispatch(initUserData())
+        dispatch(initUserDataTC())
     }, [])
 
     return (
